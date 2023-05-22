@@ -97,14 +97,14 @@ public class Shotgun : MonoBehaviour
 
     IEnumerator CloseDelay()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
         open = false;
         delaying = false;
     }
 
     IEnumerator OpenDelay()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
         open = true;
         delaying = false;
 
@@ -127,26 +127,25 @@ public class Shotgun : MonoBehaviour
         {
             if (buttonA.action.phase == InputActionPhase.Performed)
             {
-                Debug.Log(transform.rotation.eulerAngles.x + " " + lastVerticalAngle);
-                //if (!open && transform.rotation.eulerAngles.x - lastVerticalAngle > 75.0f) // move down
-                //{
-                //    animator.SetTrigger("Open");
-                //    StartCoroutine("OpenDelay");
-                //    delaying = true;
-                //    Debug.Log("Open");
-                //}
-                /*else */if (open && transform.rotation.eulerAngles.x - lastVerticalAngle < -75.0f) // move up
+                if (!open && transform.rotation.eulerAngles.x - lastVerticalAngle < -175.0f) // move down
                 {
+                    animator.ResetTrigger("Close");
+                    animator.SetTrigger("Open");
+                    StartCoroutine("OpenDelay");
+                    delaying = true;
+                }
+                else if (open && transform.rotation.eulerAngles.x - lastVerticalAngle > 175.0f) // move up
+                {
+                    animator.ResetTrigger("Open");
                     animator.SetTrigger("Close");
                     StartCoroutine("CloseDelay");
                     delaying = true;
-                    Debug.Log("Close");
                 }
             }
 
             lastVerticalAngle = transform.rotation.eulerAngles.x;
 
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.1f);
             StartCoroutine("CheckMovement");
         }
     }
