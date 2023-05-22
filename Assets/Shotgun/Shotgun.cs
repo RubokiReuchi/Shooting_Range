@@ -90,16 +90,9 @@ public class Shotgun : MonoBehaviour
         }
     }
 
-    public void ReloadBullet(ShotgunProjectile projectile)
+    public void ReloadBullet(GameObject bullet)
     {
-        if (one)
-        {
-            
-        }
-        else
-        {
-            p2 = projectile;
-        }
+        p1 = bullet.GetComponent<ShotgunProjectile>();
     }
 
     IEnumerator CloseDelay()
@@ -134,14 +127,15 @@ public class Shotgun : MonoBehaviour
         {
             if (buttonA.action.phase == InputActionPhase.Performed)
             {
-                if (transform.rotation.eulerAngles.x - lastVerticalAngle > 75.0f) // move down
-                {
-                    animator.SetTrigger("Open");
-                    StartCoroutine("OpenDelay");
-                    delaying = true;
-                    Debug.Log("Open");
-                }
-                else if (transform.rotation.eulerAngles.x - lastVerticalAngle > -75.0f) // move up
+                Debug.Log(transform.rotation.eulerAngles.x + " " + lastVerticalAngle);
+                //if (!open && transform.rotation.eulerAngles.x - lastVerticalAngle > 75.0f) // move down
+                //{
+                //    animator.SetTrigger("Open");
+                //    StartCoroutine("OpenDelay");
+                //    delaying = true;
+                //    Debug.Log("Open");
+                //}
+                /*else */if (open && transform.rotation.eulerAngles.x - lastVerticalAngle < -75.0f) // move up
                 {
                     animator.SetTrigger("Close");
                     StartCoroutine("CloseDelay");
