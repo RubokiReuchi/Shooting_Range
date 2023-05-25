@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR.Interaction.Toolkit;
+using System.Net.Sockets;
 
 public class Shotgun : MonoBehaviour
 {
@@ -21,6 +23,10 @@ public class Shotgun : MonoBehaviour
     ShotgunProjectile p2 = null;
     public Transform spawn1;
     public Transform spawn2;
+    public XRSocketInteractor socket1;
+    public XRSocketInteractor socket2;
+    public GameObject visualCartucho1;
+    public GameObject visualCartucho2;
 
     // Start is called before the first frame update
     void Start()
@@ -33,23 +39,7 @@ public class Shotgun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (onHand && !delaying)
-        {
-            if (open)
-            {
-                if (buttonA.action.phase == InputActionPhase.Performed)
-                {
-                    
-                }
-            }
-            else
-            {
-                if (buttonA.action.phase == InputActionPhase.Performed)
-                {
-                    
-                }
-            }
-        }
+        
     }
 
     public void Grab()
@@ -66,7 +56,7 @@ public class Shotgun : MonoBehaviour
 
     public void Shoot()
     {
-        if (!p1.empty)
+        if (p1 && !p1.empty)
         {
             for (int i = 0; i < pellets; i++)
             {
@@ -74,8 +64,9 @@ public class Shotgun : MonoBehaviour
                 aux.Rotate(new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), 0));
                 Instantiate(pellet, aux);
             }
+            p1.empty = true;
         }
-        else if (!p2.empty)
+        else if (p2 && !p2.empty)
         {
             for (int i = 0; i < pellets; i++)
             {
@@ -83,6 +74,7 @@ public class Shotgun : MonoBehaviour
                 aux.Rotate(new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), 0));
                 Instantiate(pellet, aux);
             }
+            p2.empty = true;
         }
         else
         {
@@ -90,9 +82,25 @@ public class Shotgun : MonoBehaviour
         }
     }
 
-    public void ReloadBullet(GameObject bullet)
+    public void ReloadBullet(bool one)
     {
-        p1 = bullet.GetComponent<ShotgunProjectile>();
+        GameObject go;
+        if (one)
+        {
+            go = socket1.GetOldestInteractableSelected().transform.gameObject;
+            p1 = go.GetComponent<ShotgunProjectile>();
+
+            go.GetComponent<MeshRenderer>().enabled = false;
+            visualCartucho1.SetActive(true);
+        }
+        else
+        {
+            go = socket2.GetOldestInteractableSelected().transform.gameObject;
+            p2 = go.GetComponent<ShotgunProjectile>();
+
+            go.GetComponent<MeshRenderer>().enabled = false;
+            visualCartucho2.SetActive(true);
+        }
     }
 
     IEnumerator CloseDelay()
@@ -110,12 +118,16 @@ public class Shotgun : MonoBehaviour
 
         if (p1 != null && p1.empty)
         {
+            p1.GetComponent<MeshRenderer>().enabled = true;
             p1 = null;
+            visualCartucho1.SetActive(false);
             // expulsar cartucho
         }
         if (p2 != null && p2.empty)
         {
+            p2.GetComponent<MeshRenderer>().enabled = true;
             p2 = null;
+            visualCartucho2.SetActive(false);
             // expulsar cartucho
         }
     }
@@ -148,5 +160,15 @@ public class Shotgun : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
             StartCoroutine("CheckMovement");
         }
+    }
+
+    public void TestHover()
+    {
+        Debug.Log("HoverStart");
+    }
+
+    public void TestSelect()
+    {
+        Debug.Log("SelectStart");
     }
 }
