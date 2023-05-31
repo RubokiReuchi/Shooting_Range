@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Box
   - Trail
+  - Projectile
   layers:
   - Default
   - TransparentFX

@@ -62,7 +62,8 @@ public class Shotgun : MonoBehaviour
             {
                 Transform aux = spawn1;
                 aux.Rotate(new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), 0));
-                Instantiate(pellet, aux);
+                GameObject go = Instantiate(pellet, aux);
+                go.GetComponent<Projectile>().direction = spawn1.up;
             }
             p1.empty = true;
         }
@@ -72,7 +73,8 @@ public class Shotgun : MonoBehaviour
             {
                 Transform aux = spawn2;
                 aux.Rotate(new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), 0));
-                Instantiate(pellet, aux);
+                GameObject go = Instantiate(pellet, aux);
+                go.GetComponent<Projectile>().direction = spawn2.up;
             }
             p2.empty = true;
         }
