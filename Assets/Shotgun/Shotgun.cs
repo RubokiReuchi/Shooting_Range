@@ -124,6 +124,7 @@ public class Shotgun : MonoBehaviour
             p1 = null;
             visualCartucho1.SetActive(false);
             // expulsar cartucho
+            StartCoroutine("ExpulseP1");
         }
         if (p2 != null && p2.empty)
         {
@@ -131,6 +132,7 @@ public class Shotgun : MonoBehaviour
             p2 = null;
             visualCartucho2.SetActive(false);
             // expulsar cartucho
+            StartCoroutine("ExpulseP2");
         }
     }
 
@@ -162,6 +164,20 @@ public class Shotgun : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
             StartCoroutine("CheckMovement");
         }
+    }
+
+    IEnumerator ExpulseP1()
+    {
+        socket1.enabled = false;
+        yield return new WaitForSeconds(0.5f);
+        socket1.enabled = true;
+    }
+
+    IEnumerator ExpulseP2()
+    {
+        socket2.enabled = false;
+        yield return new WaitForSeconds(0.5f);
+        socket2.enabled = true;
     }
 
     public void TestHover()

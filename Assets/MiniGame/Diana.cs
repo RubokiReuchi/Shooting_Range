@@ -13,6 +13,9 @@ public class Diana : MonoBehaviour
     public MiniGameManager manager;
     Vector3 startPos;
 
+    public ParticleSystem destroyPs;
+    public ParticleSystem disapearPs;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +35,7 @@ public class Diana : MonoBehaviour
         {
             manager.dianasDone++;
             transform.position = startPos;
+            disapearPs.Play();
             gameObject.SetActive(false);
         }
     }
@@ -43,6 +47,7 @@ public class Diana : MonoBehaviour
             manager.points++;
             manager.dianasDone++;
             transform.position = startPos;
+            destroyPs.Play();
             gameObject.SetActive(false);
         }
     }
