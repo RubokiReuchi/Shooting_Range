@@ -38,6 +38,7 @@ public class Shotgun : MonoBehaviour
     public AudioClip openSound;
     public AudioClip closeSound;
 
+    public XRInteractorLineVisual vrLine;
 
     // Start is called before the first frame update
     void Start()
@@ -57,6 +58,7 @@ public class Shotgun : MonoBehaviour
     public void Grab()
     {
         onHand = true;
+        vrLine.enabled = false;
 
         StartCoroutine("CheckMovement");
     }
@@ -64,6 +66,7 @@ public class Shotgun : MonoBehaviour
     public void Release()
     {
         onHand = false;
+        vrLine.enabled = true;
     }
 
     public void Shoot()
@@ -72,9 +75,9 @@ public class Shotgun : MonoBehaviour
         {
             for (int i = 0; i < pellets; i++)
             {
-                Transform aux = spawn1;
-                aux.Rotate(new Vector3(Random.Range(-dispersion, dispersion), 0, Random.Range(-dispersion, dispersion)));
-                Instantiate(pellet, aux.position, aux.rotation);
+                Quaternion aux = spawn1.rotation;
+                aux *= Quaternion.Euler(new Vector3(Random.Range(-dispersion, dispersion), 0, Random.Range(-dispersion, dispersion)));
+                Instantiate(pellet, spawn1.position, aux);
             }
             p1.empty = true;
 
@@ -85,9 +88,9 @@ public class Shotgun : MonoBehaviour
         {
             for (int i = 0; i < pellets; i++)
             {
-                Transform aux = spawn2;
-                aux.Rotate(new Vector3(Random.Range(-dispersion, dispersion), 0, Random.Range(-dispersion, dispersion)));
-                Instantiate(pellet, aux.position, aux.rotation);
+                Quaternion aux = spawn2.rotation;
+                aux *= Quaternion.Euler(new Vector3(Random.Range(-dispersion, dispersion), 0, Random.Range(-dispersion, dispersion)));
+                Instantiate(pellet, spawn2.position, aux);
             }
             p2.empty = true;
 

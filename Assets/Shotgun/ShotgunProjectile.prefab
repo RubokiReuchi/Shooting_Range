@@ -128,5 +128,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 2
-  direction: {x: 0, y: 0, z: 0}
-  speed: 10
+  speed: 30

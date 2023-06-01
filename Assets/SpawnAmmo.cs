@@ -9,11 +9,13 @@ public class SpawnAmmo : MonoBehaviour
     public float amount;
     public Transform origin;
     bool picking;
+    AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
         picking = false;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -27,6 +29,7 @@ public class SpawnAmmo : MonoBehaviour
         if (picking) return;
         StartCoroutine("Spawn");
         picking = true;
+        audioSource.Play();
     }
 
     public void Released()
