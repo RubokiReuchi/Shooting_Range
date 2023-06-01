@@ -5,7 +5,6 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float lifeTime;
-    public Vector3 direction;
     public float speed;
     Rigidbody rb;
 
@@ -13,12 +12,12 @@ public class Projectile : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.velocity = direction * speed;
     }
 
     // Update is called once per frame
     void Update()
     {
+        rb.velocity = transform.up * speed;
         lifeTime -= Time.deltaTime;
 
         if (lifeTime < 0.0f) Destroy(gameObject);

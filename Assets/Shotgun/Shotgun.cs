@@ -61,9 +61,8 @@ public class Shotgun : MonoBehaviour
             for (int i = 0; i < pellets; i++)
             {
                 Transform aux = spawn1;
-                aux.Rotate(new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), 0));
-                GameObject go = Instantiate(pellet, aux);
-                go.GetComponent<Projectile>().direction = spawn1.up;
+                aux.Rotate(new Vector3(Random.Range(-2, 2), 0, Random.Range(-2, 2)));
+                GameObject go = Instantiate(pellet, aux.position, aux.rotation);
             }
             p1.empty = true;
         }
@@ -72,9 +71,8 @@ public class Shotgun : MonoBehaviour
             for (int i = 0; i < pellets; i++)
             {
                 Transform aux = spawn2;
-                aux.Rotate(new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), 0));
-                GameObject go = Instantiate(pellet, aux);
-                go.GetComponent<Projectile>().direction = spawn2.up;
+                aux.Rotate(new Vector3(Random.Range(-2, 2), 0, Random.Range(-2, 2)));
+                GameObject go = Instantiate(pellet, aux.position, aux.rotation);
             }
             p2.empty = true;
         }
@@ -169,24 +167,18 @@ public class Shotgun : MonoBehaviour
     IEnumerator ExpulseP1()
     {
         socket1.enabled = false;
+        if (p2 == null) socket2.enabled = false;
         yield return new WaitForSeconds(0.5f);
         socket1.enabled = true;
+        socket2.enabled = true;
     }
 
     IEnumerator ExpulseP2()
     {
         socket2.enabled = false;
+        if (p1 == null) socket1.enabled = false;
         yield return new WaitForSeconds(0.5f);
         socket2.enabled = true;
-    }
-
-    public void TestHover()
-    {
-        Debug.Log("HoverStart");
-    }
-
-    public void TestSelect()
-    {
-        Debug.Log("SelectStart");
+        socket1.enabled = true;
     }
 }

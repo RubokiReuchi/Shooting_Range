@@ -17,6 +17,8 @@ public class MiniGameManager : MonoBehaviour
 
     public TextMeshProUGUI pointsText;
 
+    public AudioSource buttonAudio;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,12 +33,15 @@ public class MiniGameManager : MonoBehaviour
 
         if (!playing) return;
 
-        if (dianasDone >= maxPoints) Finish();
+        if (dianasDone >= maxPoints)
+        {
+            Finish();
+            return;
+        }
 
         for (int i = 0; i < dianas.Length; i++)
         {
-            if (dianas[i].started) continue;
-            if (dianas[i].startDelay <= clock)
+            if (!dianas[i].started && dianas[i].startDelay <= clock)
             {
                 dianas[i].manager = this;
                 dianas[i].gameObject.SetActive(true);
@@ -49,10 +54,13 @@ public class MiniGameManager : MonoBehaviour
 
     public void StartMiniGame()
     {
+        if (playing) return;
+
         clock = 0;
         points = 0;
         dianasDone = 0;
         playing = true;
+        buttonAudio.Play();
     }
 
     void Finish()
