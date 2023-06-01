@@ -12,11 +12,11 @@ public class Shotgun : MonoBehaviour
 
     bool onHand = false;
     bool open = true;
-    bool delaying = false;
 
     float lastVerticalAngle = 0;
 
     // shot
+    public float dispersion;
     public int pellets;
     public GameObject pellet;
     ShotgunProjectile p1 = null;
@@ -30,10 +30,20 @@ public class Shotgun : MonoBehaviour
 
     public Material usedCartuchosMat;
 
+    [Header("Sounds")]
+    AudioSource audioSource;
+    public AudioClip shotSound;
+    public AudioClip ReloadSound;
+    public AudioClip noAmmoSound;
+    public AudioClip openSound;
+    public AudioClip closeSound;
+
+
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
         StartCoroutine("CheckMovement");
     }
@@ -63,24 +73,31 @@ public class Shotgun : MonoBehaviour
             for (int i = 0; i < pellets; i++)
             {
                 Transform aux = spawn1;
-                aux.Rotate(new Vector3(Random.Range(-2, 2), 0, Random.Range(-2, 2)));
+                aux.Rotate(new Vector3(Random.Range(-dispersion, dispersion), 0, Random.Range(-dispersion, dispersion)));
                 Instantiate(pellet, aux.position, aux.rotation);
             }
             p1.empty = true;
+
+            audioSource.clip = shotSound;
+            audioSource.Play();
         }
         else if (p2 && !p2.empty)
         {
             for (int i = 0; i < pellets; i++)
             {
                 Transform aux = spawn2;
-                aux.Rotate(new Vector3(Random.Range(-2, 2), 0, Random.Range(-2, 2)));
+                aux.Rotate(new Vector3(Random.Range(-dispersion, dispersion), 0, Random.Range(-dispersion, dispersion)));
                 Instantiate(pellet, aux.position, aux.rotation);
             }
             p2.empty = true;
+
+            audioSource.clip = shotSound;
+            audioSource.Play();
         }
         else
         {
-            //no ammo sound
+            audioSource.clip = noAmmoSound;
+            audioSource.Play();
         }
     }
 
@@ -94,6 +111,9 @@ public class Shotgun : MonoBehaviour
 
             go.GetComponent<MeshRenderer>().enabled = false;
             visualCartucho1.SetActive(true);
+
+            audioSource.clip = ReloadSound;
+            audioSource.Play();
         }
         else
         {
@@ -102,22 +122,22 @@ public class Shotgun : MonoBehaviour
 
             go.GetComponent<MeshRenderer>().enabled = false;
             visualCartucho2.SetActive(true);
+
+            audioSource.clip = ReloadSound;
+            audioSource.Play();
         }
     }
 
     IEnumerator CloseDelay()
     {
+        audioSource.clip = closeSound;
+        audioSource.Play();
         yield return new WaitForSeconds(0.5f);
         open = false;
-        delaying = false;
     }
 
     IEnumerator OpenDelay()
     {
-        yield return new WaitForSeconds(0.5f);
-        open = true;
-        delaying = false;
-
         if (p1 != null && p1.empty)
         {
             p1.GetComponent<MeshRenderer>().enabled = true;
@@ -138,6 +158,12 @@ public class Shotgun : MonoBehaviour
             // expulsar cartucho
             StartCoroutine("ExpulseP2");
         }
+
+        audioSource.clip = openSound;
+        audioSource.Play();
+
+        yield return new WaitForSeconds(0.5f);
+        open = true;
     }
 
     IEnumerator CheckMovement()
@@ -152,14 +178,12 @@ public class Shotgun : MonoBehaviour
                     animator.ResetTrigger("Close");
                     animator.SetTrigger("Open");
                     StartCoroutine("OpenDelay");
-                    delaying = true;
                 }
                 else if (open && transform.rotation.eulerAngles.x - lastVerticalAngle > 175.0f) // move up
                 {
                     animator.ResetTrigger("Open");
                     animator.SetTrigger("Close");
                     StartCoroutine("CloseDelay");
-                    delaying = true;
                 }
             }
 

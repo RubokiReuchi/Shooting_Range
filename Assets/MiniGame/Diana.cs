@@ -19,20 +19,34 @@ public class Diana : MonoBehaviour
 
     bool hitted;
 
+    AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
         started = false;
         hitted = false;
         startPos = transform.position;
+        transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
         maxLifeTime = lifeTime;
 
         rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (transform.localScale.x < 0.5f)
+        {
+            float dt = Time.deltaTime;
+            transform.localScale = new Vector3(transform.localScale.x + dt, transform.localScale.y + dt, transform.localScale.z + dt);
+            if (transform.localScale.x > 0.5f)
+            {
+                transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            }
+        }
+
         rb.velocity = direction * speed;
         lifeTime -= Time.deltaTime;
 
@@ -57,9 +71,11 @@ public class Diana : MonoBehaviour
         destroyPs.Play();
         gameObject.GetComponent<MeshRenderer>().enabled = false;
         manager.dianasDone++;
+        audioSource.Play();
         yield return new WaitForSeconds(1.0f);
         hitted = false;
         transform.position = startPos;
+        transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
         lifeTime = maxLifeTime;
         gameObject.GetComponent<MeshRenderer>().enabled = true;
         gameObject.SetActive(false);
@@ -74,6 +90,7 @@ public class Diana : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         hitted = false;
         transform.position = startPos;
+        transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
         lifeTime = maxLifeTime;
         gameObject.GetComponent<MeshRenderer>().enabled = true;
         gameObject.SetActive(false);

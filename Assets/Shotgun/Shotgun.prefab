@@ -252,6 +252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonA: {fileID: 13221761623882624, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  dispersion: 2
   pellets: 10
   pellet: {fileID: 4758982969049508332, guid: eb1f3c8245e39024883f987cbf4a0a2a, type: 3}
   spawn1: {fileID: 684974282394315500}
@@ -260,6 +261,12 @@ MonoBehaviour:
   socket2: {fileID: 684974283408833823}
   visualCartucho1: {fileID: 378563685756885108}
   visualCartucho2: {fileID: 378563686788643548}
+  usedCartuchosMat: {fileID: 2100000, guid: 38d805541f46ae5478c147e81d5f09e9, type: 2}
+  shotSound: {fileID: 8300000, guid: 6dcbc076d80b31a40b8233eac55c4d93, type: 3}
+  ReloadSound: {fileID: 8300000, guid: 30ceaa4488fa73041af10bb8d2ca752a, type: 3}
+  noAmmoSound: {fileID: 8300000, guid: e648d4afbfa2cb5479c6e28efe55e983, type: 3}
+  openSound: {fileID: 8300000, guid: 2344affe5991c434f84dc79cb4fd03ba, type: 3}
+  closeSound: {fileID: 8300000, guid: 71b945ecb7d822249b02a6c19b688de7, type: 3}
 --- !u!1 &684974282394315501
 GameObject:
   m_ObjectHideFlags: 0

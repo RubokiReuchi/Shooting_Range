@@ -16,6 +16,9 @@ public class MiniGameManager : MonoBehaviour
     public int dianasDone;
 
     public TextMeshProUGUI pointsText;
+    public GameObject recordPoints;
+    TextMeshProUGUI recordPointsText;
+    public string recordString;
 
     public AudioSource buttonAudio;
 
@@ -24,6 +27,9 @@ public class MiniGameManager : MonoBehaviour
     {
         playing = false;
         maxPoints = dianas.Length;
+
+        recordPointsText = recordPoints.GetComponent<TextMeshProUGUI>();
+        recordPointsText.text = PlayerPrefs.GetInt(recordString, 0).ToString();
     }
 
     // Update is called once per frame
@@ -61,6 +67,7 @@ public class MiniGameManager : MonoBehaviour
         dianasDone = 0;
         playing = true;
         buttonAudio.Play();
+        recordPoints.SetActive(false);
     }
 
     void Finish()
@@ -70,5 +77,13 @@ public class MiniGameManager : MonoBehaviour
         {
             dianas[i].started = false;
         }
+
+        if (points > PlayerPrefs.GetInt(recordString, 0))
+        {
+            PlayerPrefs.SetInt(recordString, points);
+            recordPointsText.text = points.ToString();
+        }
+
+        recordPoints.SetActive(true);
     }
 }
