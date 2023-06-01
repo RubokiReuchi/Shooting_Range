@@ -28,6 +28,8 @@ public class Shotgun : MonoBehaviour
     public GameObject visualCartucho1;
     public GameObject visualCartucho2;
 
+    public Material usedCartuchosMat;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -62,7 +64,7 @@ public class Shotgun : MonoBehaviour
             {
                 Transform aux = spawn1;
                 aux.Rotate(new Vector3(Random.Range(-2, 2), 0, Random.Range(-2, 2)));
-                GameObject go = Instantiate(pellet, aux.position, aux.rotation);
+                Instantiate(pellet, aux.position, aux.rotation);
             }
             p1.empty = true;
         }
@@ -72,7 +74,7 @@ public class Shotgun : MonoBehaviour
             {
                 Transform aux = spawn2;
                 aux.Rotate(new Vector3(Random.Range(-2, 2), 0, Random.Range(-2, 2)));
-                GameObject go = Instantiate(pellet, aux.position, aux.rotation);
+                Instantiate(pellet, aux.position, aux.rotation);
             }
             p2.empty = true;
         }
@@ -119,6 +121,8 @@ public class Shotgun : MonoBehaviour
         if (p1 != null && p1.empty)
         {
             p1.GetComponent<MeshRenderer>().enabled = true;
+            p1.GetComponent<MeshRenderer>().material = usedCartuchosMat;
+            p1.GetComponent<XRGrabInteractable>().enabled = false;
             p1 = null;
             visualCartucho1.SetActive(false);
             // expulsar cartucho
@@ -127,6 +131,8 @@ public class Shotgun : MonoBehaviour
         if (p2 != null && p2.empty)
         {
             p2.GetComponent<MeshRenderer>().enabled = true;
+            p2.GetComponent<MeshRenderer>().material = usedCartuchosMat;
+            p2.GetComponent<XRGrabInteractable>().enabled = false;
             p2 = null;
             visualCartucho2.SetActive(false);
             // expulsar cartucho
