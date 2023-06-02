@@ -12,6 +12,7 @@ public class Shotgun : MonoBehaviour
 
     bool onHand = false;
     bool open = true;
+    Collider collider;
 
     float lastVerticalAngle = 0;
 
@@ -43,6 +44,7 @@ public class Shotgun : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        collider = GetComponent<Collider>();
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
 
@@ -58,6 +60,7 @@ public class Shotgun : MonoBehaviour
     public void Grab()
     {
         onHand = true;
+        collider.isTrigger = true;
         vrLine.enabled = false;
 
         StartCoroutine("CheckMovement");
@@ -66,6 +69,7 @@ public class Shotgun : MonoBehaviour
     public void Release()
     {
         onHand = false;
+        collider.isTrigger = false;
         vrLine.enabled = true;
     }
 
