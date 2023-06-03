@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -26,13 +27,14 @@ public class SimpleShoot : MonoBehaviour
 
 
 
-    public void AddMagazine(XRBaseInteractable interactable)
+    public void AddMagazine()
     {
-        magazine = interactable.GetComponent<Magazine>();
+        GameObject go = socketInteractor.GetOldestInteractableSelected().transform.gameObject;
+        magazine = go.GetComponent<Magazine>();
         hasSlide = false;
     }
 
-    public void RemoveMagazine(XRBaseInteractable interactable)
+    public void RemoveMagazine(/*XRBaseInteractable interactable*/)
     {
         magazine = null;
     }
@@ -49,13 +51,13 @@ public class SimpleShoot : MonoBehaviour
         if (barrelLocation == null)
             barrelLocation = transform;
 
-        socketInteractor.onSelectEntered.AddListener(AddMagazine);
-        socketInteractor.onSelectExited.AddListener(RemoveMagazine);
+        //socketInteractor.onSelectEntered.AddListener(AddMagazine);
+        //socketInteractor.onSelectExited.AddListener(RemoveMagazine);
     }
 
     public void PullTheTrigger()
     {
-        if(magazine && magazine.numberOfBullets > 0 && hasSlide)
+        if (magazine && magazine.numberOfBullets > 0)
         {
             Shoot();
         }

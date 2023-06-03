@@ -1130,7 +1130,7 @@ MonoBehaviour:
   dianasDone: 0
   pointsText: {fileID: 575160907}
   recordPoints: {fileID: 1542781090}
-  recordString: shotgunRecord
+  recordString: bowRecord
   button: {fileID: 838804455}
   pressedPos: {fileID: 1897554678}
   onPress:
