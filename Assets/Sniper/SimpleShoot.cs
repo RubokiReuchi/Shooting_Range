@@ -23,26 +23,38 @@ public class SimpleShoot : MonoBehaviour
 
     public Magazine magazine;
     public XRBaseInteractor socketInteractor;
-    private bool hasSlide = true;
+    //private bool hasSlide = true;
 
+
+    [Header("Sounds")]
+    AudioSource audioSource;
+    public AudioClip shotSound;
+    public AudioClip noAmmoSound;
+    public AudioClip ReleaseMagazine;
+    public AudioClip EnterMagazine;
 
 
     public void AddMagazine()
     {
         GameObject go = socketInteractor.GetOldestInteractableSelected().transform.gameObject;
         magazine = go.GetComponent<Magazine>();
-        hasSlide = false;
+        //hasSlide = false;
+
+        audioSource.clip = EnterMagazine;
+        audioSource.Play();
     }
 
     public void RemoveMagazine(/*XRBaseInteractable interactable*/)
     {
+        audioSource.clip = ReleaseMagazine;
+        audioSource.Play();
         magazine = null;
     }
 
-    public void Slide()
-    {
-        hasSlide =  true;
-    }
+    //public void Slide()
+    //{
+    //    hasSlide =  true;
+    //}
 
 
 
@@ -50,6 +62,8 @@ public class SimpleShoot : MonoBehaviour
     {
         if (barrelLocation == null)
             barrelLocation = transform;
+
+        audioSource = GetComponent<AudioSource>();
 
         //socketInteractor.onSelectEntered.AddListener(AddMagazine);
         //socketInteractor.onSelectExited.AddListener(RemoveMagazine);
@@ -60,15 +74,22 @@ public class SimpleShoot : MonoBehaviour
         if (magazine && magazine.numberOfBullets > 0)
         {
             Shoot();
+            audioSource.clip = shotSound;
+            audioSource.Play();
         }
-       
+        else
+        {
+            audioSource.clip = noAmmoSound;
+            audioSource.Play();
+        }
+
     }
 
 
     //This function creates the bullet behavior
     void Shoot()
     {
-        hasSlide = false;
+        //hasSlide = false;
         magazine.numberOfBullets--;
 
         if (muzzleFlashPrefab)
