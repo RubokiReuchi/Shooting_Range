@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [AddComponentMenu("Nokobot/Modern Guns/Simple Shoot")]
-public class SimpleShoot_Deagle : MonoBehaviour
+public class SimpleShoot : MonoBehaviour
 {
     [Header("Prefab Refrences")]
     public GameObject bulletPrefab;
