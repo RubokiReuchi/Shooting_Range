@@ -33,6 +33,11 @@ public class SimpleShoot : MonoBehaviour
     public AudioClip ReleaseMagazine;
     public AudioClip EnterMagazine;
 
+    bool canShoot;
+    public GameObject bolt;
+    Vector3 boltStartPos;
+    public Vector3 boltFinalPos;
+    
 
     public void AddMagazine()
     {
@@ -65,6 +70,8 @@ public class SimpleShoot : MonoBehaviour
 
         audioSource = GetComponent<AudioSource>();
 
+        canShoot = true;
+
         //socketInteractor.onSelectEntered.AddListener(AddMagazine);
         //socketInteractor.onSelectExited.AddListener(RemoveMagazine);
     }
@@ -73,18 +80,20 @@ public class SimpleShoot : MonoBehaviour
     {
         if (magazine && magazine.numberOfBullets > 0)
         {
-            Shoot();
-            audioSource.clip = shotSound;
-            audioSource.Play();
+            if (canShoot)
+            {
+                boltStartPos = bolt.transform.localPosition;
+                StartCoroutine("ShootCooldown");
+                audioSource.clip = shotSound;
+                audioSource.Play();
+            }
         }
         else
         {
             audioSource.clip = noAmmoSound;
             audioSource.Play();
         }
-
     }
-
 
     //This function creates the bullet behavior
     void Shoot()
@@ -108,7 +117,7 @@ public class SimpleShoot : MonoBehaviour
 
         // Create a bullet and add force on it in direction of the barrel
         Instantiate(bulletPrefab, barrelLocation.position, barrelLocation.rotation).GetComponent<Rigidbody>().AddForce(barrelLocation.forward * shotPower);
-        CasingRelease();
+        //CasingRelease();
     }
 
     //This function creates a casing at the ejection slot
@@ -130,4 +139,29 @@ public class SimpleShoot : MonoBehaviour
         Destroy(tempCasing, destroyTimer);
     }
 
+    IEnumerator ShootCooldown()
+    {
+        Shoot();
+        canShoot = false;
+        StartCoroutine("MoveBolt");
+        yield return new WaitForSeconds(0.5f);
+        CasingRelease();
+        yield return new WaitForSeconds(0.5f);
+        canShoot = true;
+    }
+
+    IEnumerator MoveBolt()
+    {
+        yield return new WaitForSeconds(0.1f);
+        while (bolt.transform.localPosition.x < boltFinalPos.x)
+        {
+            bolt.transform.localPosition += new Vector3((boltFinalPos.x - boltStartPos.x) / 24.0f, 0, 0);
+            yield return null;
+        }
+        while (bolt.transform.localPosition.x > boltStartPos.x)
+        {
+            bolt.transform.localPosition += new Vector3((boltStartPos.x - boltFinalPos.x) / 30.0f, 0, 0);
+            yield return null;
+        }
+    }
 }

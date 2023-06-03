@@ -24,6 +24,7 @@ public class TpGunOnFall : MonoBehaviour
         {
             transform.position = initialGunTransform.position;
             transform.rotation = initialGunTransform.rotation;
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
     }
 }

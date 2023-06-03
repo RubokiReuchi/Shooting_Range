@@ -9,8 +9,12 @@ public class TwoHandGrabInteractable : XRGrabInteractable
 
     public List<XRSimpleInteractable> secondHandGrabPoints = new List<XRSimpleInteractable>();
     private XRBaseInteractor secondInteractor;
+    private XRBaseInteractor firstInteractor;
 
     private Quaternion attachInitialRotation;
+
+    public XRInteractorLineVisual vrLine;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,12 +46,13 @@ public class TwoHandGrabInteractable : XRGrabInteractable
     public void OnSecondHandGrab(XRBaseInteractor interactor)
     {
         Debug.Log("SECOND HAND GRAB");
-        secondInteractor= interactor;
+        secondInteractor = interactor;
     }
     public void OnSecondHandRelease(XRBaseInteractor interactor)
     {
         Debug.Log("SECOND HAND RELEASE");
         secondInteractor = null;
+        firstInteractor.attachTransform.localRotation = attachInitialRotation;
     }
 
     
@@ -56,6 +61,8 @@ public class TwoHandGrabInteractable : XRGrabInteractable
         Debug.Log("First Grab Enter");
         base.OnSelectEntering(interactor);
         attachInitialRotation = interactor.attachTransform.localRotation;
+        vrLine.enabled = false;
+        firstInteractor = interactor;
     }
 
     protected override void OnSelectExiting(XRBaseInteractor interactor)
@@ -63,7 +70,8 @@ public class TwoHandGrabInteractable : XRGrabInteractable
         Debug.Log("First Grab Exit");
         base.OnSelectExiting(interactor);
         secondInteractor = null;
-        interactor.attachTransform.localRotation = attachInitialRotation;   
+        interactor.attachTransform.localRotation = attachInitialRotation;
+        vrLine.enabled = true;
     }
 
     public override bool IsSelectableBy(XRBaseInteractor interactor)

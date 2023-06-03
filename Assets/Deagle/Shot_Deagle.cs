@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class Shot_Deagle : MonoBehaviour
@@ -29,6 +30,8 @@ public class Shot_Deagle : MonoBehaviour
     public magazine_deagle magazine;
     public XRBaseInteractor socketInteractor;
     private bool hasSlide = true;
+
+    public XRInteractorLineVisual vrLine;
 
     public void AddMagazine(XRBaseInteractable interactable)
     {
@@ -66,21 +69,29 @@ public class Shot_Deagle : MonoBehaviour
     {
         if(magazine && magazine.numBullet > 0)
         {
-            gunAnimator.SetTrigger("Fire");
+            if (hasSlide)
+            {
+                gunAnimator.SetTrigger("Fire");
+            }
+            else
+            {
+                // sonido no slide
+            }
         }
         else
         {
             source.PlayOneShot(noAmmo);
         }
-
     }
 
+    void UseAmmo()
+    {
+        magazine.numBullet--;
+    }
 
     //This function creates the bullet behavior
     void Shoot()
     {
-        magazine.numBullet--;
-
         source.PlayOneShot(fireSound);
 
         if (muzzleFlashPrefab)
@@ -121,4 +132,13 @@ public class Shot_Deagle : MonoBehaviour
         Destroy(tempCasing, destroyTimer);
     }
 
+    public void Grab()
+    {
+        vrLine.enabled = false;
+    }
+
+    public void Release()
+    {
+        vrLine.enabled = true;
+    }
 }
