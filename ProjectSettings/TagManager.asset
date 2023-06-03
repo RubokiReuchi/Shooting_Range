@@ -8,6 +8,7 @@ TagManager:
   - Trail
   - Projectile
   - Fall
+  - Magazine
   layers:
   - Default
   - TransparentFX
