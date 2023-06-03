@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class Magazine : MonoBehaviour
 {
-    int numberOfBullets = 8;
+   public int numberOfBullets = 8;
 }
