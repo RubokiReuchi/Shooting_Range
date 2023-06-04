@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3658631731838149707}
   - component: {fileID: 3658631731838149749}
   - component: {fileID: 3658631731838149748}
+  - component: {fileID: 4300594240902852783}
   m_Layer: 0
   m_Name: rifleBullet
   m_TagString: Projectile
@@ -114,3 +115,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.00033169144, y: 0.00033169135, z: 0.0004921583}
   m_Center: {x: -1.4551915e-11, y: -7.2759563e-12, z: -0.000033941724}
+--- !u!114 &4300594240902852783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8495648826537891098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc1f09c1d8e79df48bd89a7b32e7645c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeTime: 3
+  speed: 100
+  axis: 1

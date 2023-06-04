@@ -29,6 +29,7 @@ public class MiniGameManager : MonoBehaviour
     GameObject presser;
     AudioSource audioSource;
     bool isPressed;
+    public float dianaSize;
 
     // Start is called before the first frame update
     void Start()

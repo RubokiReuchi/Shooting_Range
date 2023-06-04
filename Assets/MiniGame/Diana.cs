@@ -37,13 +37,13 @@ public class Diana : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.localScale.x < 0.5f)
+        if (transform.localScale.x < manager.dianaSize)
         {
             float dt = Time.deltaTime;
             transform.localScale = new Vector3(transform.localScale.x + dt, transform.localScale.y + dt, transform.localScale.z + dt);
-            if (transform.localScale.x > 0.5f)
+            if (transform.localScale.x > manager.dianaSize)
             {
-                transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                transform.localScale = new Vector3(manager.dianaSize, manager.dianaSize, manager.dianaSize);
             }
         }
 

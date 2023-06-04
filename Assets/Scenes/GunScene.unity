@@ -3015,6 +3015,7 @@ MonoBehaviour:
   onRelease:
     m_PersistentCalls:
       m_Calls: []
+  dianaSize: 1
 --- !u!4 &525779743
 Transform:
   m_ObjectHideFlags: 0
@@ -5419,7 +5420,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 65
   m_SelectMode: 1
   m_CustomReticle: {fileID: 0}
   m_FirstHoverEntered:
@@ -7929,6 +7930,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1345514886}
   m_Mesh: {fileID: -2834911770959887763, guid: 193410652afecd74390fc3de42f0c47c, type: 3}
+--- !u!114 &1346424586 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2125108223, guid: c3923a803ed09b74e9e104a5b3ce0f9c, type: 3}
+  m_PrefabInstance: {fileID: 5212126852579979913}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94b12556d0c17314c8abe77ce6d0eb11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1444353386
 GameObject:
   m_ObjectHideFlags: 0
@@ -10082,8 +10094,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Remove the magazine and \ninsert a new one\n\nReload the gun pulling the
-    slider\n\n"
+  m_text: "Remove the magazine and \ninsert a new one\n\nReload the gun by pulling
+    the slider\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -11554,6 +11566,10 @@ PrefabInstance:
       value: -0.0022
       objectReference: {fileID: 0}
     - target: {fileID: 2125108223, guid: c3923a803ed09b74e9e104a5b3ce0f9c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2125108223, guid: c3923a803ed09b74e9e104a5b3ce0f9c, type: 3}
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 892403777}
@@ -11569,6 +11585,10 @@ PrefabInstance:
       propertyPath: gun_slide
       value: 
       objectReference: {fileID: 8300000, guid: dcc7c856781e02c48bb63f0897e2c4f7, type: 3}
+    - target: {fileID: 3770898886814248798, guid: c3923a803ed09b74e9e104a5b3ce0f9c, type: 3}
+      propertyPath: sliderGrabComponent
+      value: 
+      objectReference: {fileID: 1346424586}
     - target: {fileID: 5212126852579979920, guid: c3923a803ed09b74e9e104a5b3ce0f9c, type: 3}
       propertyPath: m_AttachTransform
       value: 

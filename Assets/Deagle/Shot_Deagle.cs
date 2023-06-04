@@ -33,6 +33,7 @@ public class Shot_Deagle : MonoBehaviour
     private bool hasSlide = true;
 
     public XRInteractorLineVisual vrLine;
+    public XROffsetGrabInteractable sliderGrabComponent;
 
     public void AddMagazine(XRBaseInteractable interactable)
     {
@@ -111,7 +112,7 @@ public class Shot_Deagle : MonoBehaviour
         { return; }
 
         // Create a bullet and add force on it in direction of the barrel
-        Instantiate(bulletPrefab, barrelLocation.position, barrelLocation.rotation).GetComponent<Rigidbody>().AddForce(barrelLocation.forward * shotPower);
+        Instantiate(bulletPrefab, barrelLocation.position, barrelLocation.rotation);
 
     }
 
@@ -137,10 +138,12 @@ public class Shot_Deagle : MonoBehaviour
     public void Grab()
     {
         vrLine.enabled = false;
+        sliderGrabComponent.enabled = true;
     }
 
     public void Release()
     {
         vrLine.enabled = true;
+        sliderGrabComponent.enabled = false;
     }
 }
