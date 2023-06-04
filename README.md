@@ -1,41 +1,39 @@
-# Shooting_Range
-## Escena de selección de arma
-- Select apuntando a un arma para ir a la escena de dicha arma
-- Pulsar botón trasero para salir del juego
+# Shooting Range
+## Weapon Selection Scene
+- Use the Select button to aim at a weapon and go to the scene for that weapon.
+- Press the Back button to exit the game.
 
-## Escena de sniper
-- Select apuntando al arma para cogerla
-- Select apuntando a un cargador para cogerlo y colocarlo en el arma para cargarla. Para recargarla, coger el cargador actual, tirarlo y poner uno nuevo.
-- Activar para disparar el arma (si esta cargada y tiene munición).
-- Con el arma en la mano derecha, select con el mando izquierdo apuntando al cañon del arma para cogerla con la segunda mano.
-- Pulsar botón izquierdo para aparecer cartuchos
-- Pulsar botón trasero para volver a la escena de selección de arma
-- Pulsar botón delantero (en medio del pedestal) para iniciar el juego
+## Sniper Scene
+- Use the Select button to aim at the weapon and pick it up.
+- Use the Select button to aim at a magazine and pick it up, then place it in the weapon to load it. To reload, grab the current magazine, discard it, and insert a new one.
+- Activate to fire the weapon (if it is loaded and has ammunition).
+- With the weapon in your right hand, use the left controller's Select button to aim at the weapon's barrel and hold it with your second hand.
+- Press the left button to spawn cartridges.
+- Press the Back button to return to the weapon selection scene.
+- Press the front button (in the middle of the pedestal) to start the game.
 
-## Escena de escopeta
-- Select apuntando al arma para cogerla
-- Con el botón A pulsado:
-	- Rotar rápido hacia arriba para cerrar el arma
-	- Rotar rápido hacia abajo para abrir el arma
-- Pulsar botón izquierdo para aparecer cartuchos
-- Pulsar botón trasero para volver a la escena de selección de arma
-- Select apuntando al cartucho para cogerlo y soltarlo con el arma abierta para cargar el cartucho
-- Activar para disparar el arma si esta cerrada
-- Pulsar botón delantero (en medio del pedestal) para iniciar el juego
+## Shotgun Scene
+- Use the Select button to aim at the weapon and pick it up.
+- While holding the A button:
+	- Quickly rotate upwards to close the weapon.
+	- Quickly rotate downwards to open the weapon.
+- Press the left button to spawn cartridges.
+- Press the Back button to return to the weapon selection scene.
+- Use the Select button to aim at a cartridge and release it with the weapon open to load the cartridge.
+- Activate to fire the weapon if it is closed.
+- Press the front button (in the middle of the pedestal) to start the game.
 
-## Escena de pistola
-- Select apuntando al arma para cogerla
-- Select apuntando a un cargador para cogerlo y colocarlo en el arma para cargarla. 
-- Para cargar el arma, coger el cargador actual, tirarlo y poner uno nuevo. Una vez el cargador en su posición, recargar el arma bajando el slider del cañon
-- Pulsar botón izquierdo para aparecer cargadores
-- Pulsar botón trasero para volver a la escena de selección de arma
-- Pulsar botón delantero (en medio del pedestal) para iniciar el juego
+## Pistol Scene
+- Use the Select button to aim at the weapon and pick it up.
+- Use the Select button to aim at a magazine and pick it up, then place it in the weapon to load it.
+- To load the weapon, grab the current magazine, discard it, and insert a new one. Once the magazine is in position, reload the weapon by lowering the barrel slider.
+- Press the left button to spawn magazines.
+- Press the Back button to return to the weapon selection scene.
+- Press the front button (in the middle of the pedestal) to start the game.
 
-
-
-## Juego activado
-- Aparecen dianas en movimento que desaparecen al cabo de un rato
-- Se destruyen con proyectiles
-- Destruirlas da un punto
-- Cuando no queden más dianas por salir, el juego acaba y guarda tus puntos si has superado el récord
+## Game Active
+- Moving targets appear that disappear after a while.
+- They are destroyed by projectiles.
+- Destroying them earns you a point.
+- When there are no more targets left to appear, the game ends and saves your points if you have beaten the high score.
   
