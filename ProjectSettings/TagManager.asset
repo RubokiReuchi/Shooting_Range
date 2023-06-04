@@ -9,6 +9,7 @@ TagManager:
   - Projectile
   - Fall
   - Magazine
+  - Music
   layers:
   - Default
   - TransparentFX

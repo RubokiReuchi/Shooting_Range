@@ -2863,6 +2863,10 @@ PrefabInstance:
       value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 684974283830586108, guid: b597b65eb05bbc545bb321dd7a623854, type: 3}
+      propertyPath: shotSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 4707fcefa71efad4e9529849aa89e672, type: 3}
+    - target: {fileID: 684974283830586108, guid: b597b65eb05bbc545bb321dd7a623854, type: 3}
       propertyPath: dispersion
       value: 3
       objectReference: {fileID: 0}

@@ -17,9 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GunScene.unity
     guid: b8e7624b3b5b4244ab3ac1d3a8f23861
-  - enabled: 1
-    path: Assets/Scenes/BowScene.unity
-    guid: 77d9fbb0d6e775444984c0322ace9c00
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 8fccb80e6c9a84389a75f2c1ed4d786d, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: d3134b6f939114be9b8d6dbeff42d453, type: 2}
