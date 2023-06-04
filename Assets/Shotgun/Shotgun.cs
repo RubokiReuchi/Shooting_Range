@@ -75,6 +75,8 @@ public class Shotgun : MonoBehaviour
 
     public void Shoot()
     {
+        if (open) return;
+
         if (p1 && !p1.empty)
         {
             for (int i = 0; i < pellets; i++)
