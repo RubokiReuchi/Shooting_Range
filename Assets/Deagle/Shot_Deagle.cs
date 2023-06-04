@@ -25,6 +25,7 @@ public class Shot_Deagle : MonoBehaviour
     public AudioClip fireSound;
     public AudioClip reload;
     public AudioClip noAmmo;
+    public AudioClip gun_slide;
 
 
     public magazine_deagle magazine;
@@ -49,6 +50,7 @@ public class Shot_Deagle : MonoBehaviour
 
     public void Slide()
     {
+        source.PlayOneShot(gun_slide);
         hasSlide = true;
     }
 
