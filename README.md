@@ -26,7 +26,7 @@
 ## Escena de pistola
 - Select apuntando al arma para cogerla
 - Select apuntando a un cargador para cogerlo y colocarlo en el arma para cargarla. 
-- Para cargar el arma, coger el cargador actual, tirarlo y poner uno nuevo. Una vez el cargador en su posición, recargar el arma bajando el slider del cañon
+- Para cargar el arma, coger el cargador actual, tirarlo y poner uno nuevo. Una vez el cargador en su posición, recargar el arma bajando el slider del cañon con el botón select
 - Pulsar botón izquierdo para aparecer cargadores
 - Pulsar botón trasero para volver a la escena de selección de arma
 - Pulsar botón delantero (en medio del pedestal) para iniciar el juego
