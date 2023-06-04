@@ -32,6 +32,7 @@ public class SimpleShoot : MonoBehaviour
     public AudioClip noAmmoSound;
     public AudioClip ReleaseMagazine;
     public AudioClip EnterMagazine;
+    public AudioClip Ping;
 
     bool canShoot;
     public GameObject bolt;
@@ -123,6 +124,10 @@ public class SimpleShoot : MonoBehaviour
     //This function creates a casing at the ejection slot
     void CasingRelease()
     {
+
+        audioSource.clip = Ping;
+        audioSource.Play();
+
         //Cancels function if ejection slot hasn't been set or there's no casing
         if (!casingExitLocation || !casingPrefab)
         { return; }
