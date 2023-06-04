@@ -26,7 +26,7 @@
 ## Pistol Scene
 - Use the Select button to aim at the weapon and pick it up.
 - Use the Select button to aim at a magazine and pick it up, then place it in the weapon to load it.
-- To load the weapon, grab the current magazine, discard it, and insert a new one. Once the magazine is in position, reload the weapon by lowering the barrel slider.
+- To load the weapon, grab the current magazine, discard it, and insert a new one. Once the magazine is in position, reload the weapon by lowering the barrel slider with the Select button.
 - Press the left button to spawn magazines.
 - Press the Back button to return to the weapon selection scene.
 - Press the front button (in the middle of the pedestal) to start the game.
