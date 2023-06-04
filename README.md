@@ -26,7 +26,6 @@
 ## Escena de pistola
 
 
-## Escena de arco
 
 
 ## Juego activado
